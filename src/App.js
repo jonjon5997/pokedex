@@ -101,7 +101,10 @@ function App() {
   return (
     <>
       <PokemonList pokemon={pokemon} />
-      <Pagination goToNextPage={goToNextPage} goToPrevPage={goToPrevPage} />
+      <Pagination
+        goToNextPage={nextPageUrl ? goToNextPage : null}
+        goToPrevPage={prevPageUrl ? goToPrevPage : null}
+      />
     </>
   );
 }
