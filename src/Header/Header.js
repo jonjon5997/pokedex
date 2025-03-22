@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header.css";
+import pokedexLogo from "../pokedex-logo.png";
 
 function Header() {
   return (
@@ -7,15 +8,15 @@ function Header() {
       <header className="pokedex-header">
         {/* Logo & Branding */}
         <div className="logo-container">
-          <img src="pokedex-logo.png" alt="Pokédex Logo" />
+          <img className="pokedex-logo" src={pokedexLogo} alt="Pokédex Logo" />
           <h1>Pokédex</h1>
         </div>
 
         {/* Search Bar */}
-        <div className="search-container">
+        {/* <div className="search-container">
           <input type="text" placeholder="Search Pokémon..." />
           <button>🔍</button>
-        </div>
+        </div> */}
 
         {/* Optional Navigation */}
         <nav className="nav-menu">

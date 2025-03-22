@@ -1,49 +1,49 @@
-// import React from "react";
-// import "./PokemonList.css"; // Import CSS file for styling
-
-// function PokemonList({ pokemon }) {
-//   return (
-//     <div className="pokemon-list">
-//       {pokemon.map((p) => (
-//         <div key={p.name} className="pokemon-item">
-//           <img src={p.sprite} alt={p.name} className="pokemon-sprite" />
-//           <span className="pokemon-name">{p.name}</span>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
-
-// export default PokemonList;
-
-import React from "react";
+import "./PokemonList.css";
+import React, { useState } from "react";
 
 function PokemonList({ pokemon }) {
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+
+  // Function to handle sprite click
+  const handleSpriteClick = (p) => {
+    setSelectedPokemon(p);
+  };
+
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+    <div className="pokemon-container">
       {pokemon.length > 0 ? (
-        pokemon.map((p) => (
-          <div
-            key={p.name}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              border: "1px solid #ccc",
-              padding: "10px",
-              borderRadius: "5px",
-              background: "#f9f9f9",
-            }}
-          >
-            <img
-              src={p.sprite}
-              alt={p.name}
-              style={{ width: "50px", marginRight: "10px" }}
-            />
-            <p style={{ textTransform: "capitalize" }}>{p.name}</p>
-          </div>
-        ))
+        <ul className="pokemon-list">
+          {pokemon.map((p) => (
+            <li
+              key={p.name}
+              className="pokemon-item"
+              onClick={() => handleSpriteClick(p)}
+            >
+              <img src={p.sprite} alt={p.name} className="pokemon-sprite" />
+              <p className="pokemon-name">{p.name}</p>
+            </li>
+          ))}
+        </ul>
       ) : (
-        <p>No Pokémon found.</p>
+        <p className="no-pokemon">No Pokémon found.</p>
+      )}
+
+      {/* Selected Pokémon Modal */}
+      {selectedPokemon && (
+        <div className="pokemon-modal">
+          <h3 className="pokemon-modal-name">{selectedPokemon.name}</h3>
+          <img
+            src={selectedPokemon.sprite}
+            alt={selectedPokemon.name}
+            className="pokemon-modal-image"
+          />
+          <button
+            className="pokemon-modal-close"
+            onClick={() => setSelectedPokemon(null)}
+          >
+            Close
+          </button>
+        </div>
       )}
     </div>
   );

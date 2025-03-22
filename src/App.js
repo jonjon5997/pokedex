@@ -4,6 +4,7 @@ import PokemonList from "./PokemonList/PokemonList";
 import axios from "axios";
 import Pagination from "./Pagination";
 import Header from "./Header/Header";
+import PokemonModal from "./PokemonModal/PokemonModal";
 
 function App() {
   const [pokemon, setPokemon] = useState([]);
@@ -15,6 +16,24 @@ function App() {
   const [nextPageUrl, setNextPageUrl] = useState();
   const [prevPageUrl, setPrevPageUrl] = useState();
   const [loading, setLoading] = useState(true);
+  const [activeModal, setActiveModal] = useState(null);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   useEffect(() => {
     setLoading(true);
@@ -69,6 +88,34 @@ function App() {
     if (prevPageUrl) setCurrentPageUrl(prevPageUrl);
   }
 
+  const closeActiveModal = () => {
+    setActiveModal(null);
+    setSelectedPokemon(null); // Clear selected Pokémon
+  };
+
+  function handleDeleteItem(cardId) {
+    // Implement logic to delete the card
+    setPokemon((prev) => prev.filter((p) => p.id !== cardId));
+  }
+
+  const handleCloseModal = () => {
+    setSelectedPokemon(null);
+  };
+
+  const handleCardClick = (pokemon) => {
+    setSelectedPokemon(pokemon); // Set the clicked Pokémon
+    setActiveModal("pokemon-details"); // Open the details modal
+  };
+
+  const handleSpriteClick = (pokemon) => {
+    setSelectedPokemon(pokemon);
+  };
+
+  // const handleAddClick = () => {
+  //   setActiveModal("add-garment");
+  // };
+  const openModal = () => setActiveModal("pokemon-details");
+
   if (loading) return <p>Loading...</p>;
 
   return (
@@ -87,11 +134,21 @@ function App() {
           fontSize: "16px",
         }}
       />
-      <PokemonList pokemon={filteredPokemon} />
+      <PokemonList
+        pokemon={filteredPokemon}
+        handleCardClick={handleCardClick}
+      />
       <Pagination
         goToNextPage={nextPageUrl ? goToNextPage : null}
         goToPrevPage={prevPageUrl ? goToPrevPage : null}
       />
+      {activeModal === "pokemon-details" && selectedPokemon && (
+        <PokemonModal
+          activeModal={activeModal}
+          handleCloseClick={closeActiveModal}
+          pokemon={selectedPokemon} // Pass selected Pokémon
+        />
+      )}
     </>
   );
 }
