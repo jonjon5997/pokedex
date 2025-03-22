@@ -1,42 +1,39 @@
+//
 import React, { useState, useEffect } from "react";
 import PokemonList from "./PokemonList/PokemonList";
 import axios from "axios";
 import Pagination from "./Pagination";
+import Header from "./Header/Header";
+import PokemonModal from "./PokemonModal/PokemonModal";
 
 function App() {
   const [pokemon, setPokemon] = useState([]);
+  const [filteredPokemon, setFilteredPokemon] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [currentPageUrl, setCurrentPageUrl] = useState(
     "https://pokeapi.co/api/v2/pokemon/"
   );
   const [nextPageUrl, setNextPageUrl] = useState();
   const [prevPageUrl, setPrevPageUrl] = useState();
   const [loading, setLoading] = useState(true);
+  const [activeModal, setActiveModal] = useState(null);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   const controller = new AbortController(); // Create an instance of AbortController
-  //   const signal = controller.signal;
+  useEffect(() => {
+    if (!activeModal) return;
 
-  //   axios
-  //     .get(currentPageUrl, { signal }) // Use signal instead of cancelToken
-  //     .then((res) => {
-  //       setLoading(false);
-  //       setNextPageUrl(res.data.next);
-  //       setPrevPageUrl(res.data.previous);
-  //       setPokemon(res.data.results.map((p) => p.name));
-  //     })
-  //     .catch((err) => {
-  //       if (axios.isCancel(err)) {
-  //         console.log("Request canceled:", err.message);
-  //       } else {
-  //         console.error("Error fetching Pokémon:", err);
-  //       }
-  //     });
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
 
-  //   return () => {
-  //     controller.abort(); // Cleanup: cancel the request when component unmounts
-  //   };
-  // }, [currentPageUrl]);
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   useEffect(() => {
     setLoading(true);
@@ -54,11 +51,14 @@ function App() {
         const fetchPokemonDetails = res.data.results.map((p) =>
           axios.get(p.url).then((detailsRes) => ({
             name: p.name,
-            sprite: detailsRes.data.sprites.front_default, // Fetch sprite URL
+            sprite: detailsRes.data.sprites.front_default,
           }))
         );
 
-        Promise.all(fetchPokemonDetails).then(setPokemon);
+        Promise.all(fetchPokemonDetails).then((pokemonData) => {
+          setPokemon(pokemonData);
+          setFilteredPokemon(pokemonData); // Initialize filtered list
+        });
       })
       .catch((err) => {
         if (axios.isCancel(err)) {
@@ -71,6 +71,15 @@ function App() {
     return () => controller.abort();
   }, [currentPageUrl]);
 
+  // Handle search functionality
+  useEffect(() => {
+    setFilteredPokemon(
+      pokemon.filter((p) =>
+        p.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  }, [searchTerm, pokemon]);
+
   function goToNextPage() {
     if (nextPageUrl) setCurrentPageUrl(nextPageUrl);
   }
@@ -79,15 +88,67 @@ function App() {
     if (prevPageUrl) setCurrentPageUrl(prevPageUrl);
   }
 
+  const closeActiveModal = () => {
+    setActiveModal(null);
+    setSelectedPokemon(null); // Clear selected Pokémon
+  };
+
+  function handleDeleteItem(cardId) {
+    // Implement logic to delete the card
+    setPokemon((prev) => prev.filter((p) => p.id !== cardId));
+  }
+
+  const handleCloseModal = () => {
+    setSelectedPokemon(null);
+  };
+
+  const handleCardClick = (pokemon) => {
+    setSelectedPokemon(pokemon); // Set the clicked Pokémon
+    setActiveModal("pokemon-details"); // Open the details modal
+  };
+
+  const handleSpriteClick = (pokemon) => {
+    setSelectedPokemon(pokemon);
+  };
+
+  // const handleAddClick = () => {
+  //   setActiveModal("add-garment");
+  // };
+  const openModal = () => setActiveModal("pokemon-details");
+
   if (loading) return <p>Loading...</p>;
 
   return (
     <>
-      <PokemonList pokemon={pokemon} />
+      <Header />
+      {/* Search Bar */}
+      <input
+        type="text"
+        placeholder="Search Pokémon..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        style={{
+          padding: "8px",
+          margin: "10px 0",
+          width: "100%",
+          fontSize: "16px",
+        }}
+      />
+      <PokemonList
+        pokemon={filteredPokemon}
+        handleCardClick={handleCardClick}
+      />
       <Pagination
         goToNextPage={nextPageUrl ? goToNextPage : null}
         goToPrevPage={prevPageUrl ? goToPrevPage : null}
       />
+      {activeModal === "pokemon-details" && selectedPokemon && (
+        <PokemonModal
+          activeModal={activeModal}
+          handleCloseClick={closeActiveModal}
+          pokemon={selectedPokemon} // Pass selected Pokémon
+        />
+      )}
     </>
   );
 }

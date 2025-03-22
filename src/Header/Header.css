@@ -1,0 +1,14 @@
+.pokedex-header {
+  display: flex;
+  max-width: 100%;
+}
+
+.nav-menu {
+  display: block;
+  justify-content: space-between;
+}
+
+.pokedex-logo {
+  width: 40px;
+  height: 40px;
+}
