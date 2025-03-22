@@ -3,10 +3,31 @@
   max-width: 100%;
 }
 
-.nav-menu {
-  display: block;
-  justify-content: space-between;
+.header__nav-menu {
+  display: flex;
+  position: relative;
+  justify-content: center;
   color: blue;
+  font-size: 24px;
+  font-family: "Kanit", sans-serif;
+}
+
+.header__home-btn {
+  padding: 20px;
+  color: #4f4fdd;
+  opacity: 0.8;
+}
+
+.header__favorites-btn {
+  padding: 20px;
+  color: #4f4fdd;
+  opacity: 0.8;
+}
+
+.header__types-btn {
+  padding: 20px;
+  color: #4f4fdd;
+  opacity: 0.8;
 }
 
 .pokedex-logo {

@@ -163,6 +163,8 @@ import Pagination from "./Pagination";
 import Header from "./Header/Header";
 import PokemonModal from "./PokemonModal/PokemonModal";
 import About from "./About/About"; // Import About page
+import SearchBar from "./SearchBar/SearchBar"; // Import the search bar
+import Footer from "./Footer/Footer";
 
 function App() {
   const [pokemon, setPokemon] = useState([]);
@@ -258,13 +260,14 @@ function App() {
   return (
     <Router>
       <Header />
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Routes>
         {/* Main Pokédex Route */}
         <Route
           path="/"
           element={
             <>
-              <input
+              {/* <input
                 type="text"
                 placeholder="Search Pokémon..."
                 value={searchTerm}
@@ -272,10 +275,18 @@ function App() {
                 style={{
                   padding: "8px",
                   margin: "10px 0",
-                  width: "100%",
+                  width: "400px",
                   fontSize: "16px",
+                  border: "2px solid #ffcc00", // Example border
+                  borderRadius: "8px", // Rounded corners
+                  position: "relative",
+                  backgroundColor: "#f8f8f8",
+                  justifyContent: "center",
+                  display: "flex",
+                  alignItems: "center",
+                  background: "transparent",
                 }}
-              />
+              /> */}
               <PokemonList
                 pokemon={filteredPokemon}
                 handleCardClick={handleCardClick}
@@ -284,6 +295,7 @@ function App() {
                 goToNextPage={nextPageUrl ? goToNextPage : null}
                 goToPrevPage={prevPageUrl ? goToPrevPage : null}
               />
+              <Footer />
               {activeModal === "pokemon-details" && selectedPokemon && (
                 <PokemonModal
                   activeModal={activeModal}

@@ -64,10 +64,16 @@ function Header() {
         <h1>Pokédex</h1>
       </div>
 
-      <nav className="nav-menu">
-        <a href="/">Home</a>
-        <a href="/favorites">Favorites</a>
-        <a href="/types">Types</a>
+      <nav className="header__nav-menu">
+        <a href="/" className="header__home-btn">
+          Home
+        </a>
+        <a href="/favorites" className="header__favorites-btn">
+          Favorites
+        </a>
+        <a href="/types" className="header__types-btn">
+          Types
+        </a>
       </nav>
 
       {/* Theme Toggle Button */}
