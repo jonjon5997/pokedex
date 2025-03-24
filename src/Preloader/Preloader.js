@@ -14,14 +14,14 @@ function Results({ data }) {
   };
   return (
     <div>
-      {data.slice(0, visibleCount).map((item, index) => (
+      {data.slice(0, visibleCount).map((pokemon, index) => (
         <div key={index} className="result-item">
           {/* Accessing the individual properties of the Pokémon object */}
-          <h2>{item.name}</h2>
-          <img src={item.sprite} alt={item.name} />
-          <p>Types: {item.types.join(", ")}</p>
-          <p>Height: {item.height} m</p>
-          <p>Weight: {item.weight} kg</p>
+          <h2>{pokemon.name}</h2>
+          <img src={pokemon.sprite} alt={pokemon.name} />
+          <p>Types: {pokemon.types.join(", ")}</p>
+          <p>Height: {pokemon.height} m</p>
+          <p>Weight: {pokemon.weight} kg</p>
         </div>
       ))}
       {visibleCount < data.length && (
