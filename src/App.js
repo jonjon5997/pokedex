@@ -286,6 +286,7 @@ import Favorites from "./Favorites/Favorites";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import { AuthProvider, AuthContext } from "./contexts/AuthContext";
+// import { getItems } from "./utils/api";
 
 function App() {
   const [pokemon, setPokemon] = useState([]);
@@ -299,6 +300,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [favorites, setFavorites] = useState([]); // Stores liked Pokémon
 
   // Fetch Pokémon data when the page URL changes
   useEffect(() => {
@@ -328,6 +330,17 @@ function App() {
     );
   }, [searchTerm, pokemon]);
 
+  // Function to handle liking/unliking a Pokémon
+  const handleCardLike = ({ id, isLiked }) => {
+    setFavorites((prevFavorites) => {
+      if (isLiked) {
+        return [...prevFavorites, id]; // Add Pokémon to favorites
+      } else {
+        return prevFavorites.filter((favId) => favId !== id); // Remove Pokémon from favorites
+      }
+    });
+  };
+
   // Handle Pokémon card click to show modal
   const handleCardClick = (pokemon) => setSelectedPokemon(pokemon);
   const closeModal = () => setSelectedPokemon(null);
@@ -345,12 +358,16 @@ function App() {
                 <>
                   {error && <p style={{ color: "red" }}>{error}</p>}
                   {loading ? (
-                    <DataFetcher fetchData={fetchPokemonList} />
+                    <DataFetcher
+                      fetchData={() => fetchPokemonList(currentPageUrl)}
+                    />
                   ) : (
                     <>
                       <PokemonList
                         pokemon={filteredPokemon}
                         handleCardClick={handleCardClick}
+                        handleCardLike={handleCardLike} // ✅ Pass the function to PokemonList
+                        favorites={favorites} // ✅ Pass the favorites state
                       />
                       <Pagination
                         goToNextPage={
@@ -381,14 +398,13 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
-
           <Footer />
-
           {/* Show the Pokémon Modal when a Pokémon is selected */}
           {selectedPokemon && (
             <PokemonModal
               pokemon={selectedPokemon}
               handleCloseClick={closeModal}
+              handleCardLike={handleCardLike}
             />
           )}
         </Router>
@@ -400,6 +416,7 @@ function App() {
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
   const { user } = useContext(AuthContext);
+  console.log(user);
   return user ? children : <Navigate to="/login" />;
 };
 

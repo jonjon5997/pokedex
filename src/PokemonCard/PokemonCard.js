@@ -7,7 +7,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext"; // Ensure c
 function PokemonCard({ pokemon, onCardClick, handleCardLike }) {
   console.log("Pokemon Image URL:", pokemon?.sprite);
 
-  const { currentUser, updateFavorites } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
   if (!pokemon) return null; // Prevent errors if undefined
 
@@ -15,30 +15,27 @@ function PokemonCard({ pokemon, onCardClick, handleCardLike }) {
     if (onCardClick) onCardClick(pokemon);
   };
 
+  const isLiked = pokemon?.likes?.some((id) => id === currentUser?._id);
+  console.log("Pokemon Likes:", pokemon?.likes);
+
   const handleLike = () => {
     if (!currentUser) {
       navigate("/login");
       return;
     }
 
-    const isLiked = pokemon?.likes?.some((id) => id === currentUser?._id);
+    console.log("Like button clicked for:", pokemon._id); // ✅ Debugging
 
     handleCardLike({
       id: pokemon._id,
       isLiked: !isLiked,
     });
-
-    if (!isLiked) {
-      updateFavorites(pokemon);
-    } else {
-      updateFavorites(pokemon, true);
-    }
-
-    navigate("/favorites");
   };
 
-  const isLiked = pokemon?.likes?.some((id) => id === currentUser?._id);
   const showLikeButton = currentUser && currentUser._id;
+
+  console.log("Current User:", currentUser);
+  console.log("Show Like Button:", showLikeButton);
 
   return (
     <li className="card">
@@ -61,6 +58,14 @@ function PokemonCard({ pokemon, onCardClick, handleCardLike }) {
           onClick={handleLike}
         ></button>
       )}
+      {/* {true && ( // Force the button to appear for debugging
+        <button
+          className="card__like-button"
+          onClick={() => console.log("Like button clicked!")}
+        >
+          ❤️
+        </button>
+      )} */}
     </li>
   );
 }

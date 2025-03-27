@@ -1,20 +1,15 @@
 export function getItems() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          _id: "65f7368dfb74bd6a92114c85",
-          title: "Pikachu",
-          imageUrl: "https://fakepokemonapi.com/images/pikachu.png",
-        },
-        {
-          _id: "65f7371e7bce9e7d331b11a0",
-          title: "Charizard",
-          imageUrl: "https://fakepokemonapi.com/images/charizard.png",
-        },
-      ]);
-    }, 500);
-  });
+  return fetch("https://pokeapi.co/api/v2/pokemon?limit=10") // Fetch first 10 Pokémon
+    .then((res) => res.json())
+    .then((data) => {
+      return data.results.map((pokemon, index) => ({
+        _id: String(index + 1), // Assign unique ID based on index
+        title: pokemon.name, // Pokémon name
+        imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+          index + 1
+        }.png`, // Official sprite
+      }));
+    });
 }
 
 export function saveItem(item) {

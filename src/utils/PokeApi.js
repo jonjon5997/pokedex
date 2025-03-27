@@ -10,6 +10,9 @@ const BASE_URL = "https://pokeapi.co/api/v2/pokemon/";
 const fetchPokemonList = async (url = BASE_URL) => {
   try {
     const res = await axios.get(url);
+    if (!res.data || !res.data.results) {
+      throw new Error("Invalid data received from API");
+    }
 
     const pokemonData = await Promise.all(
       res.data.results.map(async (p) => {
@@ -31,7 +34,7 @@ const fetchPokemonList = async (url = BASE_URL) => {
     };
   } catch (err) {
     console.error("Error fetching Pokémon:", err);
-    throw err;
+    throw new Error("Failed to fetch Pokemon data. Please try again later.");
   }
 };
 

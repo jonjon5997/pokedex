@@ -51,7 +51,7 @@ import React, { useState } from "react";
 import PokemonCard from "../PokemonCard/PokemonCard"; // Import PokemonCard component
 import PokemonModal from "../PokemonModal/PokemonModal";
 
-function PokemonList({ pokemon, handleCardLike }) {
+function PokemonList({ pokemon, handleCardLike, favorites }) {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
 
   // Function to handle sprite click
@@ -72,8 +72,9 @@ function PokemonList({ pokemon, handleCardLike }) {
             <PokemonCard
               key={p.name}
               pokemon={p}
-              onCardClick={handleSpriteClick} // Pass handleSpriteClick to handle card clicks
-              handleCardLike={handleCardLike} // Pass handleCardLike to manage the like functionality
+              onCardClick={handleSpriteClick}
+              handleCardLike={handleCardLike}
+              isLiked={favorites.includes(p.name)} // ✅ Pass like status to PokemonCard
             />
           ))}
         </ul>

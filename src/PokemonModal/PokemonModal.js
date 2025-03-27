@@ -27,8 +27,14 @@
 
 import "./PokemonModal.css";
 import React from "react";
+// import PokemonCard from "../PokemonCard/PokemonCard";
 
-const PokemonModal = ({ activeModal, handleCloseClick, pokemon }) => {
+const PokemonModal = ({
+  activeModal,
+  handleCloseClick,
+  pokemon,
+  handleCardLike,
+}) => {
   if (!pokemon) return null;
 
   return (
@@ -50,6 +56,12 @@ const PokemonModal = ({ activeModal, handleCloseClick, pokemon }) => {
         <p className="modal__types">Types: {pokemon.types.join(", ")}</p>
         <p className="modal__height">Height: {pokemon.height} m</p>
         <p className="modal__weight">Weight: {pokemon.weight} kg</p>
+        {/* Render PokemonCard inside the modal */}
+        {/* <PokemonCard
+          pokemon={pokemon}
+          onCardClick={() => {}} // Prevent navigation inside the modal
+          handleCardLike={handleCardLike}
+        /> */}
       </div>
     </div>
   );
