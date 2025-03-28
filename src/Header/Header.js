@@ -1,40 +1,5 @@
-// import React from "react";
-// import "./Header.css";
-// import pokedexLogo from "../pokedex-logo.png";
-
-// function Header() {
-//   return (
-//     <>
-//       <header className="pokedex-header">
-//         {/* Logo & Branding */}
-//         <div className="logo-container">
-//           <img className="pokedex-logo" src={pokedexLogo} alt="Pokédex Logo" />
-//           <h1>Pokédex</h1>
-//         </div>
-
-//         {/* Search Bar */}
-//         {/* <div className="search-container">
-//           <input type="text" placeholder="Search Pokémon..." />
-//           <button>🔍</button>
-//         </div> */}
-
-//         {/* Optional Navigation */}
-//         <nav className="nav-menu">
-//           <a href="/">Home</a>
-//           <a href="/favorites">Favorites</a>
-//           <a href="/types">Types</a>
-//         </nav>
-
-//         {/* Optional Theme Toggle */}
-//         <button className="theme-toggle">🌙</button>
-//       </header>
-//     </>
-//   );
-// }
-
-// export default Header;
-
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Header.css";
 import pokedexLogo from "../pokedex-logo.png";
 
@@ -60,20 +25,22 @@ function Header() {
   return (
     <header className="pokedex-header">
       <div className="logo-container">
-        <img className="pokedex-logo" src={pokedexLogo} alt="Pokédex Logo" />
+        <Link to="/">
+          <img className="pokedex-logo" src={pokedexLogo} alt="Pokédex Logo" />
+        </Link>
         <h1>Pokédex</h1>
       </div>
 
       <nav className="header__nav-menu">
-        <a href="/" className="header__home-btn">
-          Home
-        </a>
-        <a href="/favorites" className="header__favorites-btn">
-          Favorites
-        </a>
-        <a href="/types" className="header__types-btn">
-          Types
-        </a>
+        <Link to="/">
+          <p className="header__home-btn">Home</p>
+        </Link>
+        <Link to="/favorites">
+          <p className="header__favorites-btn">Favorites</p>
+        </Link>
+        <Link to="/types">
+          <p className="header__types-btn">Types</p>
+        </Link>
       </nav>
 
       {/* Theme Toggle Button */}
