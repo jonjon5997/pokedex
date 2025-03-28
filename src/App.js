@@ -34,6 +34,8 @@ function App() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [favorites, setFavorites] = useState([]);
 
+  // const { favorites, handleCardLike } = useAuth();
+
   useEffect(() => {
     setLoading(true);
     setError(null);
@@ -59,6 +61,16 @@ function App() {
       )
     );
   }, [searchTerm, pokemon]);
+  // Load liked Pokémon from localStorage on component mount
+  useEffect(() => {
+    const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setFavorites(savedFavorites);
+  }, []);
+
+  // Update localStorage whenever favorites change
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   const handleCardLike = ({ id, isLiked }) => {
     setFavorites((prevFavorites) => {

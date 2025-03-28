@@ -27,7 +27,7 @@
 
 import "./PokemonModal.css";
 import React from "react";
-// import PokemonCard from "../PokemonCard/PokemonCard";
+import PokemonCard from "../PokemonCard/PokemonCard";
 
 const PokemonModal = ({
   activeModal,

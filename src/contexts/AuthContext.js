@@ -1,15 +1,66 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [favorites, setFavorites] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token") || null);
+
+  // Load saved likes from localStorage when the user logs in
+  useEffect(() => {
+    if (user) {
+      const savedFavorites =
+        JSON.parse(localStorage.getItem(`favorites_${user.id}`)) || [];
+      setFavorites(savedFavorites);
+    }
+  }, [user]);
+
+  // Save favorites to localStorage whenever they change
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem(`favorites_${user.id}`, JSON.stringify(favorites));
+    }
+  }, [favorites, user]);
+
+  const handleCardLike = (pokemon) => {
+    setFavorites((prevFavorites) => {
+      let updatedFavorites;
+
+      // Check if pokemon is already in favorites
+      const isCurrentlyLiked = prevFavorites.some(
+        (fav) => fav.id === pokemon.id
+      );
+
+      if (!isCurrentlyLiked) {
+        // Add the full pokemon object to favorites
+        updatedFavorites = [...prevFavorites, pokemon];
+      } else {
+        // Remove the pokemon from favorites
+        updatedFavorites = prevFavorites.filter((fav) => fav.id !== pokemon.id);
+      }
+
+      // Update localStorage with the full pokemon objects
+      if (user) {
+        localStorage.setItem(
+          `favorites_${user.id}`,
+          JSON.stringify(updatedFavorites)
+        );
+      }
+
+      return updatedFavorites;
+    });
+  };
 
   useEffect(() => {
     if (token) {
       // Simulate checking token with backend
-      setUser({ name: "Fake User", email: "fake@example.com" });
+      setUser({
+        id: "1234sdfasdf",
+        name: "John Doe",
+        email: "john@email.com",
+        pfp: "https://google.com.",
+      });
     }
   }, [token]);
 
@@ -42,8 +93,22 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, register, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        token,
+        login,
+        register,
+        logout,
+        setUser,
+        favorites,
+        handleCardLike,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
+
+// Custom hook for using AuthContext
+export const useAuth = () => useContext(AuthContext);

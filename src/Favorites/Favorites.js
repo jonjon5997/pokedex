@@ -12,7 +12,7 @@ function Favorites() {
       {favorites.length > 0 ? (
         <ul className="favorites-list">
           {favorites.map((pokemon) => (
-            <PokemonCard key={pokemon._id} PokemonModal={pokemon} />
+            <PokemonCard key={pokemon._id} pokemon={pokemon} />
           ))}
         </ul>
       ) : (

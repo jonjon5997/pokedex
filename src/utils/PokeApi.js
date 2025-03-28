@@ -17,12 +17,19 @@ const fetchPokemonList = async (url = BASE_URL) => {
     const pokemonData = await Promise.all(
       res.data.results.map(async (p) => {
         const detailsRes = await axios.get(p.url);
+
+        // Retrieve likes from localStorage (or use an empty array if none exist)
+        const storedLikes =
+          JSON.parse(localStorage.getItem("pokemon_likes")) || [];
+
         return {
           name: p.name,
           sprite: detailsRes.data.sprites.front_default,
           types: detailsRes.data.types.map((type) => type.type.name),
           height: detailsRes.data.height,
           weight: detailsRes.data.weight,
+          id: p.name, // Use Pokémon name as a unique identifier
+          likes: storedLikes.includes(p.name) ? [p.name] : [], // Add likes array
         };
       })
     );
