@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import pokedexLogo from "../pokedex-logo.png";
+import Navigation from "../Navigation/Navigation";
 
 function Header() {
   const [isDarkMode, setIsDarkMode] = useState(
@@ -26,23 +27,15 @@ function Header() {
     <header className="header">
       <div className="header__logo-container">
         <Link to="/">
-          <img className="pokedex-logo" src={pokedexLogo} alt="Pokédex Logo" />
+          <img
+            className="header__pokedex-logo"
+            src={pokedexLogo}
+            alt="Pokédex Logo"
+          />
         </Link>
         <h1>Pokédex</h1>
       </div>
-
-      <nav className="header__nav-menu">
-        <Link to="/">
-          <p className="header__home-btn">Home</p>
-        </Link>
-        <Link to="/favorites">
-          <p className="header__favorites-btn">Favorites</p>
-        </Link>
-        <Link to="/types">
-          <p className="header__types-btn">Types</p>
-        </Link>
-      </nav>
-
+      <Navigation />
       {/* Theme Toggle Button */}
       <button className="theme-toggle" onClick={toggleTheme}>
         {isDarkMode ? "☀️" : "🌙"}

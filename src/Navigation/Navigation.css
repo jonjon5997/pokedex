@@ -1,0 +1,26 @@
+.nav__menu {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  color: blue;
+  font-size: 24px;
+  font-family: "Kanit", sans-serif;
+  opacity: 0.8;
+}
+.nav__home-btn {
+  padding: 20px;
+  color: #4f4fdd;
+  opacity: 0.8;
+}
+
+.nav__favorites-btn {
+  padding: 20px;
+  color: #4f4fdd;
+  opacity: 0.8;
+}
+
+.nav__types-btn {
+  padding: 20px;
+  color: #4f4fdd;
+  opacity: 0.8;
+}

@@ -3,7 +3,7 @@ import "./Pagination.css";
 
 export default function Pagination({ goToNextPage, goToPrevPage }) {
   return (
-    <div>
+    <div className="pagination">
       {goToPrevPage && (
         <button className="pagination__button" onClick={goToPrevPage}>
           Previous
