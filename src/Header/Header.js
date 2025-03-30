@@ -23,8 +23,8 @@ function Header() {
   };
 
   return (
-    <header className="pokedex-header">
-      <div className="logo-container">
+    <header className="header">
+      <div className="header__logo-container">
         <Link to="/">
           <img className="pokedex-logo" src={pokedexLogo} alt="Pokédex Logo" />
         </Link>

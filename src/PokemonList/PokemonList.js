@@ -65,9 +65,9 @@ function PokemonList({ pokemon, handleCardLike, favorites }) {
   };
 
   return (
-    <div className="pokemon-container">
+    <div className="pokemon__container">
       {pokemon.length > 0 ? (
-        <ul className="pokemon-list">
+        <ul className="pokemon__list">
           {pokemon.map((p) => (
             <PokemonCard
               key={p.name}

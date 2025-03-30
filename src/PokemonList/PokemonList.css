@@ -1,4 +1,4 @@
-.pokemon-container {
+.pokemon__container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,7 +6,7 @@
   font-family: "Kanit", sans-serif;
 }
 
-.pokemon-list {
+.pokemon__list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 100px;

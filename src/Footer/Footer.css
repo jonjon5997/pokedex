@@ -8,6 +8,8 @@
   font-family: "Cabinet Grotesk", sans-serif;
   width: 100%;
   margin: 0 auto;
+  border-radius: 8px;
+  background-color: #f5eef5;
 }
 
 .footer__name {
