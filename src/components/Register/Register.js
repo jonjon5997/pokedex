@@ -1,32 +1,38 @@
 import { useState, useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
 
-const Login = () => {
+const Register = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const { login } = useContext(AuthContext);
+  const { register } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login(email, password);
-      navigate("/"); // Redirect to home after login
+      await register(name, email, password);
+      navigate("/login"); // Redirect to login after registering
     } catch (err) {
-      setError("Invalid credentials");
+      setError("Registration failed");
     }
   };
 
   return (
-    <div className="login__container">
-      <h2>Login</h2>
+    <div>
+      <h2>Register</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <form className="login__form" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <input
-          className="login__input"
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <input
           type="email"
           placeholder="Email"
           value={email}
@@ -34,19 +40,16 @@ const Login = () => {
           required
         />
         <input
-          className="login__input"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button className="login__button" type="submit">
-          Login
-        </button>
+        <button type="submit">Register</button>
       </form>
     </div>
   );
 };
 
-export default Login;
+export default Register;

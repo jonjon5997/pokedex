@@ -5,9 +5,9 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { fetchPokemonList, fetchAllPokemon } from "../utils/PokeApi";
+import { fetchPokemonList, fetchAllPokemon } from "../../utils/PokeApi";
 import { DataFetcher } from "../Preloader/Preloader";
-import { CurrentUserProvider } from "../contexts/CurrentUserContext";
+import { CurrentUserProvider } from "../../contexts/CurrentUserContext";
 import PokemonList from "../PokemonList/PokemonList";
 import Pagination from "../Pagination/Pagination";
 import Header from "../Header/Header";
@@ -18,7 +18,7 @@ import PokemonModal from "../PokemonModal/PokemonModal";
 import Favorites from "../Favorites/Favorites";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
-import { AuthProvider, AuthContext } from "../contexts/AuthContext";
+import { AuthProvider, AuthContext } from "../../contexts/AuthContext";
 import "./App.css";
 
 function App() {

@@ -1,7 +1,7 @@
 // src/components/FavoritesPage/FavoritesPage.js
 import React, { useContext } from "react";
 import PokemonCard from "../PokemonCard/PokemonCard";
-import { CurrentUserContext } from "../contexts/CurrentUserContext.js"; // Correct relative path
+import { CurrentUserContext } from "../../contexts/CurrentUserContext.js"; // Correct relative path
 
 function Favorites() {
   const { favorites } = useContext(CurrentUserContext);

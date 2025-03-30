@@ -83,9 +83,9 @@
 
 // export default PokemonCard;
 import React, { useContext } from "react";
-import { CurrentUserContext } from "../contexts/CurrentUserContext"; // Correct path to the context
-import likeButton from "../assets/like-button.png";
-import likedButton from "../assets/liked-button.png";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext"; // Correct path to the context
+import likeButton from "../../assets/like-button.png";
+import likedButton from "../../assets/liked-button.png";
 import "./PokemonCard.css";
 
 function PokemonCard({ pokemon, onCardClick }) {
