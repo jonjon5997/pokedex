@@ -55,6 +55,18 @@ const BASE_URL = "https://pokeapi.co/api/v2/pokemon/";
  * @param {string} url - The API URL for pagination.
  * @returns {Promise<{pokemon: Object[], next: string, prev: string}>}
  */
+
+const fetchAllPokemon = () => {
+  return fetch("https://pokeapi.co/api/v2/pokemon?limit=1000") // Adjust the limit as needed
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+      return res.json(); // First .then() returns res.json() ✅
+    })
+    .then((data) => data.results.map((p) => p.name)); // Extract only names
+};
+
 const fetchPokemonList = (url = BASE_URL) => {
   return fetch(url)
     .then((res) => {
@@ -100,4 +112,4 @@ const fetchPokemonList = (url = BASE_URL) => {
     });
 };
 
-export { fetchPokemonList };
+export { fetchPokemonList, fetchAllPokemon };
