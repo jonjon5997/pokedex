@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -20,11 +21,12 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login__container">
       <h2>Login</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
+      <form className="login__form" onSubmit={handleSubmit}>
         <input
+          className="login__input"
           type="email"
           placeholder="Email"
           value={email}
@@ -32,13 +34,16 @@ const Login = () => {
           required
         />
         <input
+          className="login__input"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Login</button>
+        <button className="login__button" type="submit">
+          Login
+        </button>
       </form>
     </div>
   );
