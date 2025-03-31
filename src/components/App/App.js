@@ -18,6 +18,7 @@ import PokemonModal from "../PokemonModal/PokemonModal";
 import Favorites from "../Favorites/Favorites";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import Main from "../Main/Main";
 import { AuthProvider, AuthContext } from "../../contexts/AuthContext";
 import "./App.css";
 
@@ -174,6 +175,22 @@ function App() {
               onSearch={handleSearchSubmit}
             />
             <Routes>
+              <Route
+                path="/"
+                element={
+                  <Main
+                    // pokemonData={pokemonData}
+                    filteredPokemon={filteredPokemon}
+                    // onCardClick={onCardClick}
+                    handleCardLike={handleCardLike}
+                    // currentUser={currentUser}
+                    currentPageUrl={currentPageUrl}
+                    nextPageUrl={nextPageUrl}
+                    prevPageUrl={prevPageUrl}
+                    setCurrentPageUrl={setCurrentPageUrl}
+                  />
+                }
+              />
               <Route
                 path="/"
                 element={
