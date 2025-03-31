@@ -24,15 +24,21 @@ body {
 }
 
 @media screen and (max-width: 1660px) {
-  .pokemon-list {
+  .pokemon__list {
     grid-template-columns: repeat(3, 1fr); /* 3 columns on smaller screens */
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .pokemon__list {
+    grid-template-columns: repeat(2, 1fr); /* 3 columns on smaller screens */
   }
 }
 
 /* Adjust Header for Small Screens */
 @media screen and (max-width: 768px) {
-  .pokemon-list {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+  .pokemon__list {
+    grid-template-columns: repeat(1, 1fr); /* 2 columns on smaller screens */
   }
 
   .search-bar input {
@@ -47,7 +53,7 @@ body {
 
 /* Extra Small Screens */
 @media screen and (max-width: 480px) {
-  .pokemon-list {
+  .pokemon__list {
     grid-template-columns: repeat(1, 1fr); /* 1 column on mobile */
   }
 
