@@ -16,6 +16,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Footer from "../Footer/Footer";
 import PokemonModal from "../PokemonModal/PokemonModal";
 import Favorites from "../Favorites/Favorites";
+import Types from "../Types/Types";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Main from "../Main/Main";
@@ -238,6 +239,8 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+
+              <Route path="/types" element={<Types pokemon={pokemon} />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
             </Routes>

@@ -56,6 +56,40 @@ const BASE_URL = "https://pokeapi.co/api/v2/pokemon/";
  * @returns {Promise<{pokemon: Object[], next: string, prev: string}>}
  */
 
+const fetchAllPokemonType = () => {
+  return fetch("https://pokeapi.co/api/v2/pokemon?limit=1000")
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+      return res.json();
+    })
+    .then((data) =>
+      Promise.all(
+        data.results.map((p) =>
+          fetch(p.url)
+            .then((detailsRes) => {
+              if (!detailsRes.ok) {
+                console.error(`Failed to fetch details for ${p.name}`);
+                return null; // Skip this Pokémon if it fails
+              }
+              return detailsRes.json();
+            })
+            .then((details) => {
+              if (!details) return null; // Skip invalid data
+              return {
+                id: details.id,
+                name: p.name,
+                sprite: details.sprites.front_default,
+                types: details.types.map((type) => type.type.name),
+              };
+            })
+        )
+      )
+    )
+    .then((pokemonData) => pokemonData.filter((p) => p != null)); // Filter out null entries
+};
+
 const fetchAllPokemon = () => {
   return fetch("https://pokeapi.co/api/v2/pokemon?limit=1000") // Adjust the limit as needed
     .then((res) => {
@@ -112,4 +146,4 @@ const fetchPokemonList = (url = BASE_URL) => {
     });
 };
 
-export { fetchPokemonList, fetchAllPokemon };
+export { fetchPokemonList, fetchAllPokemon, fetchAllPokemonType };

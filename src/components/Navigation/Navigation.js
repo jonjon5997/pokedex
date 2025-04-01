@@ -14,6 +14,9 @@ function Navigation() {
       <Link to="/types">
         <p className="nav__types-btn">Types</p>
       </Link>
+      <Link to="/about">
+        <p className="nav__about-btn">About</p>
+      </Link>
     </nav>
   );
 }

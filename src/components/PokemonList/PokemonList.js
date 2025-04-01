@@ -70,7 +70,7 @@ function PokemonList({ pokemon, handleCardLike, favorites }) {
         <ul className="pokemon__list">
           {pokemon.map((p) => (
             <PokemonCard
-              key={p.name}
+              key={p.name || p.id}
               pokemon={p}
               onCardClick={handleSpriteClick}
               handleCardLike={handleCardLike}
