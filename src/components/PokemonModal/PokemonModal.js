@@ -15,9 +15,16 @@ const PokemonModal = ({
         handleCloseClick();
       }
     }
+    function handleEscapeKey(e) {
+      if (e.key === "Escape") {
+        handleCloseClick();
+      }
+    }
     document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("keydown", handleEscapeKey);
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("keydown", handleEscapeKey);
     };
   }, [handleCloseClick]);
 
