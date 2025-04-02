@@ -1,5 +1,5 @@
 import "./PokemonModal.css";
-import React from "react";
+import React, { useRef, useEffect } from "react";
 // import PokemonCard from "../PokemonCard/PokemonCard";
 
 const PokemonModal = ({
@@ -8,6 +8,19 @@ const PokemonModal = ({
   pokemon,
   handleCardLike,
 }) => {
+  const modalRef = useRef(null);
+  useEffect(() => {
+    function handleOutsideClick(e) {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        handleCloseClick();
+      }
+    }
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [handleCloseClick]);
+
   if (!pokemon) return null;
 
   return (
@@ -16,7 +29,7 @@ const PokemonModal = ({
         activeModal === "pokemon-details" ? "modal_opened" : ""
       }`}
     >
-      <div className="modal__content">
+      <div className="modal__content" ref={modalRef}>
         <button
           onClick={handleCloseClick}
           type="button"
