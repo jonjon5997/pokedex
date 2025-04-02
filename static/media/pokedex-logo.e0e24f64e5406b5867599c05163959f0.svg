@@ -1,0 +1,131 @@
+
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    id="svg2"
+    width="210mm"
+    height="297mm"
+    version="1.1"
+    viewBox="0 0 744.094 1052.362"
+  >
+    <defs id="defs4">
+      <linearGradient id="linearGradient4481">
+        <stop id="stop4483" offset="0" stopColor="#fff" stopOpacity="1"></stop>
+        <stop id="stop4485" offset="1" stopColor="red" stopOpacity="0"></stop>
+      </linearGradient>
+      <linearGradient
+        xlinkHref="#linearGradient4481"
+        id="linearGradient4489"
+        x1="-1500"
+        x2="-1420"
+        y1="892.362"
+        y2="1312.362"
+        gradientUnits="userSpaceOnUse"
+      ></linearGradient>
+      <filter
+        id="filter4520"
+        width="1.072"
+        height="1.072"
+        x="-0.036"
+        y="-0.036"
+        colorInterpolationFilters="sRGB"
+      >
+        <feGaussianBlur
+          id="feGaussianBlur4522"
+          stdDeviation="5.997"
+        ></feGaussianBlur>
+      </filter>
+    </defs>
+    <g
+      id="layer1"
+      fillOpacity="1"
+      stroke="#000"
+      strokeDasharray="none"
+      strokeDashoffset="0"
+      strokeLinejoin="round"
+      strokeMiterlimit="4"
+      strokeOpacity="1"
+    >
+      <g
+        id="g4498"
+        fill="#000"
+        filter="url(#filter4520)"
+        transform="translate(1872.654 -633.896)"
+      >
+        <circle
+          id="circle4500"
+          cx="-1500.607"
+          cy="1160.077"
+          r="189.974"
+          strokeWidth="2.85"
+          opacity="1"
+        ></circle>
+        <path
+          id="path4502"
+          strokeWidth="3"
+          d="M-1500.513 960.179c-105.47 0-191.864 81.64-199.452 185.174h109.14a92.06 92.06 0 0 1 90.816-77.233 92.06 92.06 0 0 1 90.777 77.565h.072v-.332h107.91c-8.674-90.194-94.566-185.174-199.264-185.174z"
+          opacity="1"
+        ></path>
+        <path
+          id="path4504"
+          strokeWidth="3"
+          d="M-1500.607 1091.936a68.14 68.14 0 0 0-68.14 68.14 68.14 68.14 0 0 0 68.14 68.143 68.14 68.14 0 0 0 68.14-68.143 68.14 68.14 0 0 0-68.14-68.14zm0 43.49a24.65 24.65 0 0 1 24.652 24.65 24.65 24.65 0 0 1-24.652 24.653 24.65 24.65 0 0 1-24.65-24.653 24.65 24.65 0 0 1 24.65-24.65z"
+          opacity="1"
+        ></path>
+        <path
+          id="path4506"
+          strokeWidth="3"
+          d="M-1700.507 1165.607c2.982 107.852 91.344 194.369 199.918 194.369 108.263 0 196.423-101.56 199.882-194.37h-107.517a92.06 92.06 0 0 1-91.862 86.428 92.06 92.06 0 0 1-91.775-86.427z"
+          opacity="1"
+        ></path>
+        <path
+          id="path4508"
+          strokeWidth="3"
+          d="M-1500.513 960.179c-105.47 0-191.864 81.64-199.452 185.174h109.14a92.06 92.06 0 0 1 90.816-77.233 92.06 92.06 0 0 1 90.777 77.565h.072v-.332h107.91c-8.674-90.194-94.566-185.174-199.264-185.174z"
+          opacity="1"
+        ></path>
+      </g>
+      <g id="g4491" transform="translate(1872.654 -633.896)">
+        <circle
+          id="circle4275"
+          cx="-1500.607"
+          cy="1160.077"
+          r="189.974"
+          fill="#000"
+          strokeWidth="2.85"
+          opacity="1"
+        ></circle>
+        <path
+          id="path4277"
+          fill="red"
+          strokeWidth="3"
+          d="M-1500.513 960.179c-105.47 0-191.864 81.64-199.452 185.174h109.14a92.06 92.06 0 0 1 90.816-77.233 92.06 92.06 0 0 1 90.777 77.565h.072v-.332h107.91c-8.674-90.194-94.566-185.174-199.264-185.174z"
+          opacity="1"
+        ></path>
+        <path
+          id="path4279"
+          fill="#f2f2f2"
+          strokeWidth="3"
+          d="M-1500.607 1091.936a68.14 68.14 0 0 0-68.14 68.14 68.14 68.14 0 0 0 68.14 68.143 68.14 68.14 0 0 0 68.14-68.143 68.14 68.14 0 0 0-68.14-68.14zm0 43.49a24.65 24.65 0 0 1 24.652 24.65 24.65 24.65 0 0 1-24.652 24.653 24.65 24.65 0 0 1-24.65-24.653 24.65 24.65 0 0 1 24.65-24.65z"
+          opacity="1"
+        ></path>
+        <path
+          id="path4281"
+          fill="#f9f9f9"
+          strokeWidth="3"
+          d="M-1700.507 1165.607c2.982 107.852 91.344 194.369 199.918 194.369 108.263 0 196.423-101.56 199.882-194.37h-107.517a92.06 92.06 0 0 1-91.862 86.428 92.06 92.06 0 0 1-91.775-86.427z"
+          opacity="1"
+        ></path>
+        <path
+          id="path4479"
+          fill="url(#linearGradient4489)"
+          strokeWidth="3"
+          d="M-1500.513 960.179c-105.47 0-191.864 81.64-199.452 185.174h109.14a92.06 92.06 0 0 1 90.816-77.233 92.06 92.06 0 0 1 90.777 77.565h.072v-.332h107.91c-8.674-90.194-94.566-185.174-199.264-185.174z"
+          opacity="1"
+        ></path>
+      </g>
+    </g>
+  </svg>
+
+
+
