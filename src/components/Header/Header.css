@@ -1,0 +1,66 @@
+.header {
+  display: flex;
+  max-width: 100%;
+  background-color: #f5eef5;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-bottom: 2px solid #ddd;
+}
+
+.header__pokedex-logo {
+  width: 80px;
+  height: 80px;
+}
+
+/* Default Light Mode */
+body {
+  /* background-color: white; */
+  color: #555;
+  transition: background 0.3s, color 0.3s;
+  background: rgb(34, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(34, 0, 36, 0.3057816876750701) 0%,
+    rgba(118, 9, 121, 0.08169205182072825) 50%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Dark Mode */
+body.dark-mode {
+  /* background-color: #1e1e1e; */
+  color: rgb(226, 199, 199);
+  background: rgb(34, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(34, 0, 36, 0.3057816876750701) 0%,
+    rgba(118, 9, 121, 0.924829306722689) 50%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+body.dark-mode .pokedex-header {
+  background-color: #322b32;
+  border-bottom: 2px solid #555;
+  border-radius: 8px;
+}
+
+body.dark-mode .theme-toggle {
+  color: white;
+}

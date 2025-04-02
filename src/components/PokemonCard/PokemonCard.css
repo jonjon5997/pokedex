@@ -1,0 +1,73 @@
+.card {
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.8px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+
+  width: 323px;
+  height: 326px;
+  position: relative;
+  justify-content: center;
+  display: flex;
+  border: 1px solid #0000004d;
+
+  border-radius: 19px;
+}
+
+.card__name {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  line-height: 20px;
+  font-size: 16px;
+  position: absolute;
+  top: 15px;
+  margin: 0;
+  background-color: #ffffff;
+  padding: 2px 12px 2px 12px;
+  color: #000000;
+  opacity: 60%;
+}
+
+.card__image {
+  width: 100%;
+  border-radius: 19px;
+}
+
+.card__like-button {
+  background-image: url("../../assets/like-button.svg");
+  width: 18px;
+  height: 15px;
+  width: 18px;
+  height: 15px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  position: absolute;
+  background-color: transparent;
+  top: 20px;
+  right: 100px;
+}
+
+.card__like-button_active {
+  background-image: url("../../assets/liked-button.svg");
+  width: 18px;
+  height: 15px;
+  width: 18px;
+  height: 15px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  position: absolute;
+  background-color: transparent;
+  top: 20px;
+  right: 100px;
+}
